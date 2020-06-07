@@ -48,14 +48,17 @@ namespace CedictParser
 
             Match match = regex.Match(line);
 
-            // Skip the first match because it's the whole line
-            entry.Traditional = match.Groups[1].Value;
-            entry.Simplified = match.Groups[2].Value;
-            entry.Pinyin = match.Groups[3].Value.Trim('[', ']');
+            if (match.Success)
+            {
+                // Skip the first match because it's the whole line
+                entry.Traditional = match.Groups[1].Value;
+                entry.Simplified = match.Groups[2].Value;
+                entry.Pinyin = match.Groups[3].Value.Trim('[', ']');
 
-            string definitionsValue = match.Groups[4].Value;
+                string definitionsValue = match.Groups[4].Value;
 
-            entry.Definitions = definitionsValue.Trim('/').Split('/');
+                entry.Definitions = definitionsValue.Trim('/').Split('/');
+            }
 
             return entry;
         }
@@ -65,6 +68,9 @@ namespace CedictParser
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Disposes the underlying stream reader.
+        /// </summary>
         public void Dispose()
         {
             if (reader != null)

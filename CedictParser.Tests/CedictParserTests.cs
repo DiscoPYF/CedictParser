@@ -70,7 +70,7 @@ namespace CedictParser.Tests
         }
 
         [TestMethod]
-        public void Read_ShouldReturnEntryWithEmptyFields_WhenEntryIsMalformed()
+        public void Read_ShouldReturnEntryWithDefaultPropertyValues_WhenEntryIsMalformed()
         {
             string s = "你好你好 [ni3 hao3] /hello/hi/";
 
@@ -85,12 +85,10 @@ namespace CedictParser.Tests
                 CedictEntry entry = parser.Read();
 
                 Assert.IsNotNull(entry);
-                Assert.AreEqual("", entry.Traditional);
-                Assert.AreEqual("", entry.Simplified);
-                Assert.AreEqual("", entry.Pinyin);
-                Assert.IsNotNull(entry.Definitions);
-                Assert.AreEqual(1, entry.Definitions.Length);
-                Assert.AreEqual("", entry.Definitions[0]);
+                Assert.IsNull(entry.Traditional);
+                Assert.IsNull(entry.Simplified);
+                Assert.IsNull(entry.Pinyin);
+                Assert.IsNull(entry.Definitions);
             }
         }
 
