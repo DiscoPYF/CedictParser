@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 namespace CedictParser
 {
@@ -45,23 +46,30 @@ namespace CedictParser
                 return null;
             }
 
-            var entry = new CedictEntry();
+            return ParseEntry(line);
+        }
 
-            Match match = regex.Match(line);
+        /// <summary>
+        /// Reads the next CC-CEDICT entry asynchronously.
+        /// </summary>
+        /// <returns>A task that represents the asynchronous read operation.
+        /// The result of the task contains the next CC-CEDICT entry.</returns>
+        public async Task<CedictEntry> ReadAsync()
+        {
+            string line;
 
-            if (match.Success)
+            do
             {
-                // Skip the first match because it's the whole line
-                entry.Traditional = match.Groups[1].Value;
-                entry.Simplified = match.Groups[2].Value;
-                entry.Pinyin = match.Groups[3].Value.Trim('[', ']');
+                line = await reader.ReadLineAsync();
+            }
+            while (line != null && line.StartsWith(commentToken));
 
-                string definitionsValue = match.Groups[4].Value;
-
-                entry.Definitions = definitionsValue.Trim('/').Split('/');
+            if (line == null)
+            {
+                return null;
             }
 
-            return entry;
+            return ParseEntry(line);
         }
 
         /// <summary>
@@ -90,6 +98,31 @@ namespace CedictParser
         }
 
         /// <summary>
+        /// Reads all the remaining CC-CEDICT entries asynchronously.
+        /// </summary>
+        /// <returns>A task that represents the asynchronous read operation.
+        /// The result of the task contains a list of CC-CEDICT entries.</returns>
+        public async Task<IList<CedictEntry>> ReadToEndAsync()
+        {
+            var result = new List<CedictEntry>();
+
+            CedictEntry entry;
+
+            do
+            {
+                entry = await ReadAsync();
+
+                if (entry != null)
+                {
+                    result.Add(entry);
+                }
+            }
+            while (entry != null);
+
+            return result;
+        }
+
+        /// <summary>
         /// Disposes the underlying stream reader.
         /// </summary>
         public void Dispose()
@@ -105,6 +138,27 @@ namespace CedictParser
                     reader = null;
                 }
             }
+        }
+
+        private CedictEntry ParseEntry(string line)
+        {
+            var entry = new CedictEntry();
+
+            Match match = regex.Match(line);
+
+            if (match.Success)
+            {
+                // Skip the first match because it's the whole line
+                entry.Traditional = match.Groups[1].Value;
+                entry.Simplified = match.Groups[2].Value;
+                entry.Pinyin = match.Groups[3].Value.Trim('[', ']');
+
+                string definitionsValue = match.Groups[4].Value;
+
+                entry.Definitions = definitionsValue.Trim('/').Split('/');
+            }
+
+            return entry;
         }
     }
 }
