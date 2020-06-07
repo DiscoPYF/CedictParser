@@ -17,6 +17,8 @@ namespace CedictParser
 
         private static readonly string pattern = @"(\S+) (\S+) (\[.+\]) (/.+/)";
 
+        private const string commentToken = "#";
+
         public CedictParser(StreamReader reader)
         {
             this.reader = reader;
@@ -35,7 +37,7 @@ namespace CedictParser
             {
                 line = reader.ReadLine();
             }
-            while (line != null && line.StartsWith("#"));
+            while (line != null && line.StartsWith(commentToken));
 
             if (line == null)
             {
