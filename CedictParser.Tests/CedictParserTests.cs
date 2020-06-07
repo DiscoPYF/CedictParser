@@ -137,6 +137,28 @@ namespace CedictParser.Tests
 
                 Assert.IsNotNull(entries);
                 Assert.AreEqual(2, entries.Count);
+
+                CedictEntry entry = entries[0];
+
+                Assert.IsNotNull(entry);
+                Assert.AreEqual("你好", entry.Traditional);
+                Assert.AreEqual("你好", entry.Simplified);
+                Assert.AreEqual("ni3 hao3", entry.Pinyin);
+                Assert.IsNotNull(entry.Definitions);
+                Assert.AreEqual(2, entry.Definitions.Length);
+                Assert.AreEqual("hello", entry.Definitions[0]);
+                Assert.AreEqual("hi", entry.Definitions[1]);
+
+                entry = entries[1];
+
+                Assert.IsNotNull(entry);
+                Assert.AreEqual("再見", entry.Traditional);
+                Assert.AreEqual("再见", entry.Simplified);
+                Assert.AreEqual("zai4 jian4", entry.Pinyin);
+                Assert.IsNotNull(entry.Definitions);
+                Assert.AreEqual(2, entry.Definitions.Length);
+                Assert.AreEqual("goodbye", entry.Definitions[0]);
+                Assert.AreEqual("see you again later", entry.Definitions[1]);
             }
         }
     }

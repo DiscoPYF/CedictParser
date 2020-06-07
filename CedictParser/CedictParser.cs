@@ -26,9 +26,10 @@ namespace CedictParser
         }
 
         /// <summary>
-        /// Reads the next CEDICT entry from the stream.
+        /// Reads the next CC-CEDICT entry from the stream.
         /// </summary>
-        /// <returns>The next CEDICT entry or null if there is nothing left to read.</returns>
+        /// <returns>The next CC-CEDICT entry or null
+        /// if there is nothing left to read.</returns>
         public CedictEntry Read()
         {
             string line;
@@ -63,9 +64,29 @@ namespace CedictParser
             return entry;
         }
 
+        /// <summary>
+        /// Read all the remaining CC-CEDICT entries.
+        /// </summary>
+        /// <returns>A list of CC-CEDICT entries.
+        /// The list is empty if there is nothing else to read.</returns>
         public IList<CedictEntry> ReadToEnd()
         {
-            throw new NotImplementedException();
+            var result = new List<CedictEntry>();
+
+            CedictEntry entry;
+
+            do
+            {
+                entry = Read();
+
+                if (entry != null)
+                {
+                    result.Add(entry);
+                }
+            }
+            while (entry != null);
+
+            return result;
         }
 
         /// <summary>
