@@ -1,7 +1,7 @@
 ﻿namespace CedictParser
 {
     /// <summary>
-    /// Represents one CEDICT entry.
+    /// Represents one CC-CEDICT entry.
     /// </summary>
     public class CedictEntry
     {

@@ -3,22 +3,22 @@
 namespace CedictParser
 {
     /// <summary>
-    /// Defines a CEDICT parser.
+    /// Defines a CC-CEDICT parser.
     /// </summary>
     public interface ICedictParser
     {
         /// <summary>
-        /// Reads the next CEDICT entry.
+        /// Reads the next CC-CEDICT entry.
         /// </summary>
-        /// <returns>The next CEDICT entry or null
+        /// <returns>The next CC-CEDICT entry or null
         /// if there is nothing left to read.</returns>
         CedictEntry Read();
 
         /// <summary>
-        /// Read all the CEDICT entries.
+        /// Read all the remaining CC-CEDICT entries.
         /// </summary>
-        /// <returns>A list of CEDICT entries or null
+        /// <returns>A list of CC-CEDICT entries or null
         /// if there is nothing left to read.</returns>
-        IList<CedictEntry> ReadAll();
+        IList<CedictEntry> ReadToEnd();
     }
 }
