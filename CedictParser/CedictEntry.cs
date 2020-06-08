@@ -1,4 +1,4 @@
-﻿namespace CedictParser
+﻿namespace CedictParserLib
 {
     /// <summary>
     /// Represents one CC-CEDICT entry.

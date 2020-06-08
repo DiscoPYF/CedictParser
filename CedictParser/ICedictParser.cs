@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace CedictParser
+namespace CedictParserLib
 {
     /// <summary>
     /// Defines a CC-CEDICT parser.

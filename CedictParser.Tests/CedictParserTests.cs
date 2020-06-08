@@ -4,7 +4,7 @@ using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CedictParser.Tests
+namespace CedictParserLib.Tests
 {
     [TestClass]
     public class CedictParserTests

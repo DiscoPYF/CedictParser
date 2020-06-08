@@ -4,7 +4,7 @@ using System.IO;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace CedictParser
+namespace CedictParserLib
 {
     /// <summary>
     /// An implementation of <see cref="ICedictParser"/> that
@@ -20,6 +20,11 @@ namespace CedictParser
 
         private const string commentToken = "#";
 
+        /// <summary>
+        /// Creates a new instance of <see cref="CedictParser"/>
+        /// with the provided <see cref="StreamReader"/> to parse from.
+        /// </summary>
+        /// <param name="reader">The <see cref="StreamReader"/> to read data from for parsing.</param>
         public CedictParser(StreamReader reader)
         {
             this.reader = reader;
