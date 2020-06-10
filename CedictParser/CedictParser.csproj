@@ -2,6 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Description>A library for parsing the CC-CEDICT format.</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/DiscoPYF/CedictParser</RepositoryUrl>
+    <PackageTags>cc-cedict cedict</PackageTags>
+    <Version>1.0.0</Version>
+    <Authors>Pierre-Yves Fare</Authors>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
