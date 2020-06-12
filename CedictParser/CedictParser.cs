@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
@@ -29,6 +30,16 @@ namespace CedictParserLib
         {
             this.reader = reader;
             regex = new Regex(pattern);
+        }
+
+        /// <summary>
+        /// Creates a new instance of <see cref="CedictParser"/>
+        /// with the provided file to parse from.
+        /// </summary>
+        /// <param name="filepath">The path of the file to read data from for parsing.</param>
+        public CedictParser(string filepath)
+            : this(new StreamReader(filepath, Encoding.UTF8))
+        {
         }
 
         /// <summary>
