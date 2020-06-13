@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 namespace CedictParserLib
 {
     /// <summary>
-    /// An implementation of <see cref="ICedictParser"/> that
-    /// reads CC-CEDICT entries from a stream.
+    /// An implementation of <see cref="ICedictParser"/> for
+    /// parsing CC-CEDICT entries from a stream.
     /// </summary>
     public class CedictParser : ICedictParser, IDisposable
     {
