@@ -8,6 +8,8 @@
     <PackageTags>cc-cedict cedict chinese dictionary</PackageTags>
     <Version>1.0.0</Version>
     <Authors>Pierre-Yves Fare</Authors>
+    <Copyright>Copyright (c) 2020 Pierre-Yves FARE</Copyright>
+    <PackageLicenseUrl>https://github.com/DiscoPYF/CedictParser/blob/master/LICENSE</PackageLicenseUrl>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
